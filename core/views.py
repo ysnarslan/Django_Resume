@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document
 
 
 # Create your views here.
@@ -17,6 +17,7 @@ def index(request):
     experiences = Experience.objects.all()
     educations = Education.objects.all()
     social_medias = SocialMedia.objects.all()
+    docs = Document.objects.all()
 
     # Images
     home_banner_image = ImageSetting.objects.get(name='home_banner_image').file
@@ -42,5 +43,11 @@ def index(request):
         'experiences': experiences,
         'educations': educations,
         'social_medias': social_medias,
+        'docs': docs,
     }
     return render(request, 'index.html', context=context)
+
+
+def redirect_urls(request, slug):
+    doc = get_object_or_404(Document, slug=slug)
+    return redirect(doc.file.url)
