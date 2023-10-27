@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import GeneralSetting, ImageSetting, Skill, Experience
+from .models import GeneralSetting, ImageSetting, Skill, Experience, Education
 
 
 # Create your views here.
@@ -15,6 +15,7 @@ def index(request):
     about_myself_footer = GeneralSetting.objects.get(name='about_myself_footer').parameter
 
     experiences = Experience.objects.all()
+    educations = Education.objects.all()
 
     # Images
     home_banner_image = ImageSetting.objects.get(name='home_banner_image').file
@@ -38,5 +39,6 @@ def index(request):
         'header_logo': header_logo,
         'skills': skills,
         'experiences': experiences,
+        'educations': educations,
     }
     return render(request, 'index.html', context=context)
