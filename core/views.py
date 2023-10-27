@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import GeneralSetting, ImageSetting
+from .models import GeneralSetting, ImageSetting, Skill
 
 
 # Create your views here.
@@ -13,9 +13,14 @@ def index(request):
     home_banner_description = GeneralSetting.objects.get(name='home_banner_description').parameter
     about_myself_welcome = GeneralSetting.objects.get(name='about_myself_welcome').parameter
     about_myself_footer = GeneralSetting.objects.get(name='about_myself_footer').parameter
+
+    # Images
     home_banner_image = ImageSetting.objects.get(name='home_banner_image').file
     site_favicon = ImageSetting.objects.get(name='site_favicon').file
     header_logo = ImageSetting.objects.get(name='header_logo').file
+
+    # Skills
+    skills = Skill.objects.all().order_by('order')
 
     context = {
         'site_title': site_title,
@@ -29,5 +34,6 @@ def index(request):
         'home_banner_image': home_banner_image,
         'site_favicon': site_favicon,
         'header_logo': header_logo,
+        'skills': skills,
     }
     return render(request, 'index.html', context=context)
