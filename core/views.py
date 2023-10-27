@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import GeneralSetting, ImageSetting, Skill, Experience, Education
+from .models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia
 
 
 # Create your views here.
@@ -16,6 +16,7 @@ def index(request):
 
     experiences = Experience.objects.all()
     educations = Education.objects.all()
+    social_medias = SocialMedia.objects.all()
 
     # Images
     home_banner_image = ImageSetting.objects.get(name='home_banner_image').file
@@ -40,5 +41,6 @@ def index(request):
         'skills': skills,
         'experiences': experiences,
         'educations': educations,
+        'social_medias': social_medias,
     }
     return render(request, 'index.html', context=context)
