@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import environ
 
-
 env = environ.Env()
 environ.Env.read_env()
 
@@ -29,7 +28,6 @@ DEBUG = env('DEBUG')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=list)
 
@@ -136,3 +134,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email Settings
+vars().update(env.email_url())
+DEFAULT_FROM_EMAIL = 'Yasin ARSLAN <ysnarsln1730@gmail.com>'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
