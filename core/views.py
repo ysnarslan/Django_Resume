@@ -14,7 +14,7 @@ def get_general_setting(parameter):
 
 def get_image_setting(parameter):
     try:
-        obj = GeneralSetting.objects.get(name=parameter).file
+        obj = ImageSetting.objects.get(name=parameter).file
     except:
         obj = ''
 
@@ -30,7 +30,6 @@ def layout(request):
     home_banner_description = get_general_setting('home_banner_description')
     about_myself_welcome = get_general_setting('about_myself_welcome')
     about_myself_footer = get_general_setting('about_myself_footer')
-
 
     social_medias = SocialMedia.objects.all()
 
@@ -56,7 +55,6 @@ def layout(request):
         'site_favicon': site_favicon,
         'header_logo': header_logo,
         'social_medias': social_medias,
-
     }
     return context
 
