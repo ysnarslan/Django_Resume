@@ -147,6 +147,8 @@ else:
     STATIC_ROOT = STATIC_URL
 
     MEDIA_LOCATION = 'media'
+    IMAGE_SETTING_LOCATION = MEDIA_LOCATION + '/image_setting'
+    DOCUMENT_LOCATION = MEDIA_LOCATION + '/documents'
 
 
 # Default primary key field type
