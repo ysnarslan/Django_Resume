@@ -24,4 +24,4 @@ RUN pip install -r /tmp/requirements.txt
 COPY . /srv/app
 WORKDIR /srv/app
 
-# python manage.py migrate
+ENTRYPOINT ["entrypoint.sh"]
